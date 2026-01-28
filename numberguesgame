@@ -1,0 +1,17 @@
+import random
+
+randnumber = random.randint(1, 100)
+numberuser = 0
+print("Welcome to the Number Guessing Game!")
+print("I have selected a number between 1 and 100. Can you guess it?")
+
+while numberuser != randnumber:
+    numberuser = int(input("Enter a number: "))
+    if numberuser < randnumber:
+        print("Your number is too Low")
+    elif numberuser > randnumber:
+        print("Your number is too High")
+    else:
+        print("You guessed it right!")
+
+print("Congratulations! You've won the game.")
