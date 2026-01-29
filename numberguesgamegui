@@ -1,22 +1,29 @@
 import random
 import tkinter as tk
+from tkinter.simpledialog import askinteger
+from tkinter import *
+from tkinter import messagebox
 
 app = tk.Tk()
 app.title("Number Guessing Game")
 app.geometry("200x200")
-
 randnumber = random.randint(1, 100)
 numberuser = 0
-print("Welcome to the Number Guessing Game!")
-print("I have selected a number between 1 and 100. Can you guess it?")
 
-while numberuser != randnumber:
-    numberuser = int(input("Enter a number: "))
-    if numberuser < randnumber:
-        print("Your number is too Low")
-    elif numberuser > randnumber:
-        print("Your number is too High")
-    else:
-        print("You guessed it right!")
-
-print("Congratulations! You've won the game.")
+def show():
+    while True:
+        global randnumber
+        numberuser = askinteger("Input", "Guess a number between 1 and 100:")
+        if numberuser is None:
+            return
+        elif numberuser < randnumber:
+            messagebox.showinfo("Result", "Too low! Try again.")
+        elif numberuser > randnumber:
+            messagebox.showinfo("Result", "Too high! Try again.")
+        else:
+            messagebox.showinfo("Result", "Congratulations! You've won the game.")        
+            randnumber = random.randint(1, 100)
+            
+Button(app, text="Guess the Number", command=show).pack(pady=20)
+EButton = Button(app, text="Exit", command=app.destroy).pack(pady=20)
+app.mainloop()
